@@ -1,0 +1,100 @@
+/* entire code */
+
+<style>
+  
+  .qrcode-container {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+
+.qrcode-container h2 {
+  font-size: 40px;
+}
+
+.qrcode-container .content {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.qrcode-container .control {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.qrcode-container .qrcode-message {
+  flex: 1;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  padding: 18px;
+  resize: none;
+}
+
+.qrcode-container .generate-btn {
+  border: none;
+  padding: 12px 32px;
+  font-size: 20px;
+  background: #001219;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .qrcode-container .content {
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+  
+</style>
+
+<div class="qrcode-container">
+      <h2>Generate Online QR Code</h2>
+      <div class="content">
+        <div class="control">
+          <textarea class="qrcode-message"></textarea>
+          <button class="generate-btn">Generate QR Code</button>
+        </div>
+
+        <div class="qrcode"></div>
+      </div>
+    </div>
+
+    <script crossorigin="anonymous" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+
+<script>
+  
+  let message =
+  "Write something in the text field and click on Generate QR Code button.";
+const QRCodeImage = document.querySelector(".qrcode");
+const QRCodeMessage = document.querySelector(".qrcode-message");
+const generateBtn = document.querySelector(".generate-btn");
+
+let qrcode = new QRCode(QRCodeImage, {
+  text: message,
+  width: 300,
+  height: 300,
+  colorDark: "#001219",
+  colorLight: "#ffffff",
+});
+
+const generateQRCode = (message) => {
+  qrcode.clear();
+  qrcode.makeCode(message);
+};
+
+generateBtn.addEventListener("click", () => {
+  message = QRCodeMessage.value;
+  generateQRCode(message);
+});
+  
+  
+  
+</script>
